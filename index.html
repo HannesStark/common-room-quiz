@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5e642" />
+    <meta
+      name="description"
+      content="A quiz for curious minds. Math, biology, computing, machine learning and law. Play together, compete, or explore on your own."
+    />
+    <title>Common Room | A quiz for curious minds</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="#" class="brand" id="brand" aria-label="Common Room home"
+        ><span class="brand-icon" aria-hidden="true">cr.</span
+        ><span
+          >common room<span class="brand-sub"
+            >A QUIZ FOR CURIOUS MINDS</span
+          ></span
+        ></a
+      >
+      <nav aria-label="Main">
+        <button id="library-link" class="nav-button">Question library</button
+        ><button id="about-link" class="nav-button">About &amp; sources</button>
+      </nav>
+    </header>
+    <main id="app">
+      <div class="loading">
+        <h1>Pull up a chair.</h1>
+        <p>Opening the question box...</p>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <span>Made for good questions and long conversations.</span
+      ><button class="text-button" id="footer-about">
+        Independent quiz &middot; MIT OCW sources</button
+      ><span id="save-status">Progress stays in this browser.</span>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <button id="close-modal" class="close-button" aria-label="Close dialog">
+        &times;
+      </button>
+      <div id="modal-body"></div>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      >This quiz needs JavaScript to keep score and reveal answers. Please
+      enable it in your browser.</noscript
+    >
+  </body>
+</html>
