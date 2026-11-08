@@ -3723,5 +3723,621 @@
       "url": "https://ocw.mit.edu/courses/24-235j-philosophy-of-law-spring-2012/9f77f803acfde52dc518fb596542d18c_MIT24_235JS12_Session25.pdf"
     },
     "type": "Discussion"
+  },
+  {
+    "id": "prob01",
+    "category": "probability",
+    "level": 2,
+    "title": "The host forgot the script",
+    "prompt": "A prize is placed uniformly behind one of three doors. You pick door 1. A host who does NOT know the prize location opens one of the other doors uniformly at random. It happens to be empty. Given only that it was empty, what is your chance of winning by switching to the remaining closed door?",
+    "options": ["1/2", "2/3", "1/3", "3/4"],
+    "answer": 0,
+    "hint": "An uninformed host can accidentally reveal the prize. Condition on the fact that this did not happen.",
+    "explanation": "Your original choice contains the prize with prior probability 1/3, and then the host certainly opens an empty door. It is wrong with probability 2/3, and then the host opens an empty door only half the time. These two surviving cases each have probability 1/3, so switching wins in half of them. The usual informed-host Monty Hall answer does not apply.",
+    "source": {
+      "title": "MIT 18.05: Conditional Probability, Independence and Bayes' Theorem",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class03-prep.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob02",
+    "category": "probability",
+    "level": 1,
+    "title": "Fairness from a suspicious coin",
+    "prompt": "A coin has an unknown but fixed heads probability p, with 0 < p < 1. Tosses are independent. You toss it in disjoint pairs: output 0 for HT, output 1 for TH, and discard HH or TT and try again. What can you say about the output?",
+    "options": [
+      "It is fair only if p = 1/2",
+      "The more common coin face determines the more common output",
+      "Discarding pairs prevents any output from being fair",
+      "0 and 1 are equally likely"
+    ],
+    "answer": 3,
+    "hint": "Compare the probabilities of HT and TH, without trying to estimate p.",
+    "explanation": "HT and TH each have probability p(1-p). Conditioning on getting one of these two outcomes therefore gives probability 1/2 to each output. Independent fresh pairs let you repeat until acceptance. A fixed bias and independence are essential; arbitrary drifting or correlated tosses need not work.",
+    "source": {
+      "title": "MIT 18.05: Conditional Probability, Independence and Bayes' Theorem",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class03-prep.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob03",
+    "category": "probability",
+    "level": 2,
+    "title": "The batch has a personality",
+    "prompt": "A batch has an unknown defect rate p, drawn uniformly from 0 to 1. Conditional on p, items fail independently with probability p. The first randomly tested item fails. What is the probability that the next item from the same batch fails?",
+    "options": ["3/4", "1/3", "2/3", "1/2"],
+    "answer": 2,
+    "hint": "A failure is more likely to come from a high-p batch. Average p after that update.",
+    "explanation": "The posterior density of p is proportional to p, hence equals 2p on [0,1]. The next failure probability is the posterior mean: integral from 0 to 1 of 2p^2, which is 2/3. Items are independent given the batch rate, but observing one item gives information about that shared rate.",
+    "source": {
+      "title": "MIT 18.05: Bayesian Updating and Probabilistic Prediction",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class12-prep-a_pdf/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob04",
+    "category": "probability",
+    "level": 2,
+    "title": "Three lamps, two random bits",
+    "prompt": "Two independent fair bits X and Y control lamps. A third lamp Z is on exactly when X and Y differ: Z = X XOR Y. Which description of the three bits is correct?",
+    "options": [
+      "No pair is independent",
+      "Every pair is independent, but the three are not jointly independent",
+      "All three are jointly independent",
+      "X and Y are dependent, but Z is independent of both"
+    ],
+    "answer": 1,
+    "hint": "List the four equally likely triples. Then inspect any two columns.",
+    "explanation": "The possible triples are 000, 011, 101 and 110. Every pair takes 00, 01, 10 and 11 equally often, so each pair is independent. But knowing X and Y fixes Z, and four of the eight triples are impossible. Pairwise independence is weaker than joint independence.",
+    "source": {
+      "title": "MIT 18.05: Joint Distributions and Independence",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class07-prep-a.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob05",
+    "category": "probability",
+    "level": 1,
+    "title": "A surprisingly small birthday party",
+    "prompt": "Assume independent birthdays uniformly distributed over 365 days, with no leap day. At a party with 23 people, what is the approximate probability that at least two share a birthday?",
+    "options": ["51%", "6%", "23%", "94%"],
+    "answer": 0,
+    "hint": "Count the chance that all birthdays are different, then subtract from 1.",
+    "explanation": "The no-match probability is (365/365)(364/365)...(343/365), about 0.493. Thus at least one match has probability about 0.507. There are 253 pairs of people, which explains why a match can be likely even though 23 is much smaller than 365.",
+    "source": {
+      "title": "MIT 18.05: Problem Set 1 Solutions (counting, dice and birthdays)",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_pset01_sol_pdf/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob06",
+    "category": "probability",
+    "level": 1,
+    "title": "The scrambled name badges",
+    "prompt": "At a dinner, 20 distinct name badges are randomly handed to 20 people, one each, with all assignments equally likely. What is the expected number of people who receive their own badge?",
+    "options": ["0", "About 7", "10", "1"],
+    "answer": 3,
+    "hint": "Give each person an indicator for receiving the correct badge. Add their expectations.",
+    "explanation": "Each person has probability 1/20 of receiving their own badge. Summing 20 indicator expectations gives 20 times 1/20 = 1. The assignments are dependent, but linearity of expectation does not require independence. An expectation of 1 does not mean that every assignment has one correct badge.",
+    "source": {
+      "title": "MIT 18.05: Expected Value of Discrete Random Variables",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class04-prep-b.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob07",
+    "category": "probability",
+    "level": 2,
+    "title": "Nobody gets their own mug",
+    "prompt": "Four people each brought a different mug. The four mugs are returned in a uniformly random assignment, one per person. What is the probability that nobody receives their own mug?",
+    "options": ["1/2", "81/256", "3/8", "1/4"],
+    "answer": 2,
+    "hint": "There are 24 assignments. You can count the successful ones as two swaps or one four-person cycle.",
+    "explanation": "There are 3 ways to make two disjoint swaps and 6 ways to make a single cycle of length 4. These 9 assignments out of 24 give 3/8. Multiplying (3/4) four times gives the tempting 81/256, but the four wrong-mug events are not independent.",
+    "source": {
+      "title": "MIT 18.05: Counting and Sets",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class01-prep-b_pdf/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob08",
+    "category": "probability",
+    "level": 2,
+    "title": "The absent-minded passenger",
+    "prompt": "There are 100 passengers with distinct assigned seats. The first picks a seat uniformly at random. Each later passenger takes their assigned seat if free, otherwise a uniformly random free seat. What is the probability that the final passenger gets their own seat?",
+    "options": [
+      "It decreases to zero as the plane gets larger",
+      "1/2",
+      "1/100",
+      "99/100"
+    ],
+    "answer": 1,
+    "hint": "Track the displacement chain until it reaches either the first passenger's seat or the last passenger's seat.",
+    "explanation": "Only seats 1 and 100 determine how the chain ends. If seat 1 is chosen first, all remaining passengers can sit correctly. If seat 100 is chosen first, the last passenger loses. At each random choice these two still-free seats are symmetric, so either is reached first with probability 1/2. The intermediate seats only prolong the chain.",
+    "source": {
+      "title": "MIT 18.05: Conditional Probability, Independence and Bayes' Theorem",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class03-prep.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob09",
+    "category": "probability",
+    "level": 2,
+    "title": "The last sticker is always missing",
+    "prompt": "A packet contains one sticker, independently and uniformly chosen from four designs. Starting with none, how many packets do you expect to open before collecting all four designs?",
+    "options": ["25/3, about 8.33", "4", "6", "16"],
+    "answer": 0,
+    "hint": "Split the wait into stages: zero, one, two and three distinct designs already collected.",
+    "explanation": "The next new design has probability 1, 3/4, 1/2 and 1/4 at the four stages. The expected waits are therefore 1, 4/3, 2 and 4 packets. Their sum is 25/3. The last missing design alone costs an average of four more packets.",
+    "source": {
+      "title": "MIT 6.041SC: The Coupon Collector Problem (Kuang Xu)",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/resources/the-coupon-collector-problem-1/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob10",
+    "category": "probability",
+    "level": 2,
+    "title": "The first winning ticket",
+    "prompt": "Ten tickets are shuffled uniformly. Exactly two are winners. You reveal them one at a time and stop at the first winner. What is the expected number of tickets you reveal, including the winner?",
+    "options": ["5", "3", "11/2, or 5.5", "11/3, about 3.67"],
+    "answer": 3,
+    "hint": "The eight losing tickets fall into three gaps: before, between and after the two winners.",
+    "explanation": "The three gaps have the same expected size by symmetry, so each contains 8/3 losers on average. The first winner appears after the first gap, giving 8/3 + 1 = 11/3. Treating each reveal as an independent success with probability 1/5 would ignore sampling without replacement.",
+    "source": {
+      "title": "MIT 18.05: Counting and Sets",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class01-prep-b_pdf/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob11",
+    "category": "probability",
+    "level": 2,
+    "title": "Three guests, three desserts",
+    "prompt": "Three guests each independently choose one of three desserts, all choices equally likely. The kitchen prepares only the dessert types that somebody orders. What is the expected number of different types it must prepare?",
+    "options": ["3/2, or 1.5", "3", "19/9, about 2.11", "2"],
+    "answer": 2,
+    "hint": "For each dessert, calculate the chance that nobody chooses it.",
+    "explanation": "A particular dessert is ignored with probability (2/3)^3 = 8/27, so it is ordered with probability 19/27. Add the indicators for the three dessert types: 3 times 19/27 = 19/9. Counting types with indicators is easier than enumerating all order patterns.",
+    "source": {
+      "title": "MIT 18.05: Expected Value of Discrete Random Variables",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class04-prep-b.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob12",
+    "category": "probability",
+    "level": 2,
+    "title": "A quiet first half-hour",
+    "prompt": "Messages arrive according to a homogeneous Poisson process. You learn that exactly three messages arrived during a particular hour. Given that information, what is the probability that none arrived during the first half-hour?",
+    "options": ["It depends on the unknown arrival rate", "1/8", "1/2", "1/3"],
+    "answer": 1,
+    "hint": "Conditional on the total, how is each event distributed between equal-length halves?",
+    "explanation": "Conditional on three arrivals in an hour, their unordered times are independent uniform points in that hour. Each has probability 1/2 of lying in the second half, so all three do so with probability (1/2)^3 = 1/8. The rate cancels once the total count is given.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 15, Poisson Processes and Random Incidence",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/92100e282f5ebf4991bb732cdf9d6902_MIT6_041SCF13_L15.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob13",
+    "category": "probability",
+    "level": 2,
+    "title": "The bus timetable trap",
+    "prompt": "Buses run forever with gaps alternating exactly between 5 and 15 minutes. You arrive at a time whose phase in the repeating 20-minute cycle is uniform. What is your expected wait for the next bus?",
+    "options": ["6.25 minutes", "5 minutes", "7.5 minutes", "10 minutes"],
+    "answer": 0,
+    "hint": "You are three times as likely to land in a 15-minute gap as in a 5-minute gap.",
+    "explanation": "With probability 5/20 you land in the short gap and wait 2.5 minutes on average. With probability 15/20 you land in the long gap and wait 7.5 minutes on average. The weighted mean is (1/4)(2.5) + (3/4)(7.5) = 6.25. Random arrival samples time, not gaps uniformly.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 15, Poisson Processes and Random Incidence",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/92100e282f5ebf4991bb732cdf9d6902_MIT6_041SCF13_L15.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob14",
+    "category": "probability",
+    "level": 1,
+    "title": "Two clocks race",
+    "prompt": "Two independent exponential clocks start together. Clock A rings after 10 minutes on average; clock B after 20 minutes on average. What is the probability that A rings first?",
+    "options": ["1/2", "3/4", "1/3", "2/3"],
+    "answer": 3,
+    "hint": "Exponential races are governed by rates, the reciprocals of the mean waiting times.",
+    "explanation": "The rates are 1/10 and 1/20 per minute. In an exponential race, the chance that A wins is its rate divided by the sum: (1/10)/(1/10 + 1/20) = 2/3. A shorter mean makes A more likely to win, but does not guarantee it.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 15, Poisson Processes and Random Incidence",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/92100e282f5ebf4991bb732cdf9d6902_MIT6_041SCF13_L15.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob15",
+    "category": "probability",
+    "level": 2,
+    "title": "Waiting for both servers",
+    "prompt": "Two independent servers start one job each. Each job duration is exponential with mean 10 minutes. How long do you expect to wait until BOTH jobs are finished?",
+    "options": ["20 minutes", "5 minutes", "15 minutes", "10 minutes"],
+    "answer": 2,
+    "hint": "First wait for either job to finish. Then use the memoryless property for the remaining job.",
+    "explanation": "With two jobs active, their combined completion rate is 2/10 per minute, so the first completion takes 5 minutes on average. The remaining job has an exponential residual duration with mean 10 minutes. The total expected time is 15 minutes. Running jobs concurrently helps, but the slower one still matters.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 15, Poisson Processes and Random Incidence",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/92100e282f5ebf4991bb732cdf9d6902_MIT6_041SCF13_L15.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob16",
+    "category": "probability",
+    "level": 3,
+    "title": "A very unfair pattern race",
+    "prompt": "A fair coin is tossed repeatedly. You win if HHH appears first; your coplayer wins if THH appears first. Patterns are consecutive and may overlap. What is your probability of winning?",
+    "options": ["3/8", "1/8", "1/2", "1/4"],
+    "answer": 1,
+    "hint": "What happens if a T occurs before the very first run of three heads?",
+    "explanation": "You can win only if the first three tosses are HHH, which has probability 1/8. Otherwise a T appears before HHH can occur. From then on, the first run of at least two heads after a T produces THH before any HHH. Equal probabilities for patterns at a fixed position do not imply equal chances in a race.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 18, Absorption Probabilities and Waiting Times",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/3dd39ef98a1da35dbe78dfbd702a4748_MIT6_041SCF13_L18.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob17",
+    "category": "probability",
+    "level": 2,
+    "title": "Waiting for a change of mind",
+    "prompt": "Starting from scratch, toss a fair coin until the consecutive pattern HT first appears. How many tosses do you expect, counting the final T?",
+    "options": ["4", "2", "6", "8"],
+    "answer": 0,
+    "hint": "Wait for the first H. Then wait for the next T; any extra H keeps you ready.",
+    "explanation": "The first H takes 2 tosses on average. After that, the first T also takes 2 tosses on average, and it must immediately follow an H because all intervening tosses were H. Thus the total is 4. Unlike waiting for HH, another H does not erase useful progress.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 6, Geometric Waiting Times and Total Expectation",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/9866bcafa1403ea4163ec3c6b31a53c0_MIT6_041SCF13_L06.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob18",
+    "category": "probability",
+    "level": 2,
+    "title": "The robot and the two exits",
+    "prompt": "A robot starts at position 2 on the line 0, 1, 2, 3, 4, 5. Each step independently moves left or right with equal probability. It stops on reaching either 0 or 5. What is its probability of exiting at 5?",
+    "options": ["1/2", "3/5", "1/4", "2/5"],
+    "answer": 3,
+    "hint": "The exit probability at an interior point is the average of the probabilities at its two neighbors.",
+    "explanation": "Write h(i) for the chance of reaching 5 first. The boundaries are h(0)=0 and h(5)=1, while h(i)=(h(i-1)+h(i+1))/2. The solution is linear: h(i)=i/5. Starting at 2 therefore gives 2/5. The nearer exit at 0 is more likely.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 18, Absorption Probabilities and Waiting Times",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/3dd39ef98a1da35dbe78dfbd702a4748_MIT6_041SCF13_L18.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob19",
+    "category": "probability",
+    "level": 3,
+    "title": "How long until the robot escapes?",
+    "prompt": "A robot starts at 2 on the line 0, 1, 2, 3, 4. Each step independently moves left or right with equal probability, and it stops at 0 or 4. What is the expected number of steps before it stops?",
+    "options": ["8", "Infinitely many", "4", "2"],
+    "answer": 2,
+    "hint": "By symmetry, the expected remaining time at 1 equals that at 3. Write one equation for 1 and one for 2.",
+    "explanation": "Let t1=t3. From position 1, t1=1+t2/2, because the other step exits. From position 2, t2=1+t1. Solving gives t2=4. The robot can wander for arbitrarily long, but its mean exit time in this finite corridor is finite.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 18, Absorption Probabilities and Waiting Times",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/3dd39ef98a1da35dbe78dfbd702a4748_MIT6_041SCF13_L18.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob20",
+    "category": "probability",
+    "level": 2,
+    "title": "The winner does not tell you the wait",
+    "prompt": "Roll a fair six-sided die independently until a 5 or a 6 appears. You are told that the stopping face was 6. Given that information, what is the expected total number of rolls?",
+    "options": ["7/2, or 3.5", "3", "6", "2"],
+    "answer": 1,
+    "hint": "For every possible stopping time, the final 5 and final 6 are equally likely.",
+    "explanation": "The stopping time is geometric with success probability 2/6, giving mean 3. At every possible stopping time, the terminating face is equally likely to be 5 or 6. The face and the time are therefore independent. Conditioning on a final 6 leaves the expected wait at 3.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 6, Geometric Waiting Times and Total Expectation",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/9866bcafa1403ea4163ec3c6b31a53c0_MIT6_041SCF13_L06.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob21",
+    "category": "probability",
+    "level": 2,
+    "title": "Can the broken stick become a triangle?",
+    "prompt": "Choose two independent uniform cut locations on a stick of length 1, and cut at both. What is the probability that the three resulting pieces can form a nondegenerate triangle?",
+    "options": ["1/4", "1/2", "1/3", "3/4"],
+    "answer": 0,
+    "hint": "A triangle is possible exactly when every piece is shorter than half the stick.",
+    "explanation": "Write the ordered cuts as x<y. The three lengths are x, y-x and 1-y. All must be below 1/2. In the triangular region 0<x<y<1, the valid region has area 1/8, while the whole region has area 1/2. Their ratio is 1/4. Choosing two independent cuts is part of the model; other cutting procedures can give other answers.",
+    "source": {
+      "title": "MIT 6.041SC: Probability that Three Pieces Form a Triangle (Jimmy Li)",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/resources/probability-that-three-pieces-form-a-triangle-1/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob22",
+    "category": "probability",
+    "level": 2,
+    "title": "Coffee, with a patience limit",
+    "prompt": "You and a friend independently arrive at uniformly random times between noon and 1 pm. Each waits for 15 minutes, then leaves if the other has not arrived. What is the probability you meet?",
+    "options": ["1/4", "1/2", "9/16", "7/16"],
+    "answer": 3,
+    "hint": "Plot your two arrival times in a 60-by-60 square. You miss each other in two corner triangles.",
+    "explanation": "You meet when the arrival times differ by at most 15 minutes. The two failure triangles each have legs of length 45, so their combined area is 45^2. The meeting probability is 1 - 45^2/60^2 = 7/16. Boundary cases have probability zero.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 9, Multiple Continuous Random Variables",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/0e64d4c45353c6ed659a2f5969407843_MIT6_041SCF13_L09.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob23",
+    "category": "probability",
+    "level": 3,
+    "title": "Three points around a circle",
+    "prompt": "Three points are chosen independently and uniformly on a circle's circumference. Join them to form a triangle. What is the probability that the triangle contains the circle's center?",
+    "options": ["1/3", "3/4", "1/4", "1/2"],
+    "answer": 2,
+    "hint": "The center is outside exactly when all three points fit into some semicircle.",
+    "explanation": "For any chosen point, the chance that both other points lie in the clockwise semicircle beginning there is (1/2)^2=1/4. Except for zero-probability boundary cases, the three possible starting-point events are disjoint and cover all configurations contained in a semicircle. The probability of missing the center is 3/4, so containing it has probability 1/4.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 9, Multiple Continuous Random Variables",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/0e64d4c45353c6ed659a2f5969407843_MIT6_041SCF13_L09.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob24",
+    "category": "probability",
+    "level": 2,
+    "title": "The nearest random sensor",
+    "prompt": "Three sensors are placed independently and uniformly along a one-meter rail. What is the expected distance from the left end to the nearest sensor?",
+    "options": ["1/2 meter", "1/4 meter", "1/3 meter", "1/6 meter"],
+    "answer": 1,
+    "hint": "The three points divide the rail into four gaps. These gaps have equal means.",
+    "explanation": "The four gaps between ordered uniform points and the two endpoints are exchangeable and sum to one meter, so each has mean 1/4 meter. The leftmost gap is the distance to the nearest sensor. Equivalently, P(nearest > x)=(1-x)^3, whose integral from 0 to 1 is 1/4.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 9, Multiple Continuous Random Variables",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/0e64d4c45353c6ed659a2f5969407843_MIT6_041SCF13_L09.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob25",
+    "category": "probability",
+    "level": 3,
+    "title": "A random chord, carefully defined",
+    "prompt": "Choose two independent uniform points on a circle's circumference and join them. What is the probability that this chord is longer than a side of an equilateral triangle inscribed in the same circle?",
+    "options": ["1/3", "1/2", "1/4", "2/3"],
+    "answer": 0,
+    "hint": "Fix the first endpoint by rotational symmetry. Which arc contains the second endpoint for a long enough chord?",
+    "explanation": "An inscribed equilateral side spans a smaller central angle of 120 degrees. Fixing the first endpoint at angle 0, the second must lie between 120 and 240 degrees. That arc is one third of the circumference. Other meanings of a random chord can give different probabilities; the endpoint rule removes that ambiguity.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 9, Multiple Continuous Random Variables",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/0e64d4c45353c6ed659a2f5969407843_MIT6_041SCF13_L09.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob26",
+    "category": "probability",
+    "level": 1,
+    "title": "The suspicious dart generator",
+    "prompt": "A program generates a point in a unit disk by choosing radius r uniformly from 0 to 1 and angle uniformly from 0 to 360 degrees, independently. What fraction of its points fall inside the disk of radius 1/2?",
+    "options": ["1/4", "3/4", "1/8", "1/2"],
+    "answer": 3,
+    "hint": "The code samples radius uniformly, not area uniformly.",
+    "explanation": "The point is in the inner disk exactly when r<1/2, which occurs half the time. A point sampled uniformly by area would land there only one quarter of the time. To sample area uniformly, one can use r=sqrt(U) with U uniform on [0,1]. A plausible-looking generator can encode the wrong probability model.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 9, Multiple Continuous Random Variables",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/0e64d4c45353c6ed659a2f5969407843_MIT6_041SCF13_L09.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob27",
+    "category": "probability",
+    "level": 2,
+    "title": "Dice that refuse to rank nicely",
+    "prompt": "Three fair six-sided dice have faces A: 2,2,4,4,9,9; B: 1,1,6,6,8,8; C: 3,3,5,5,7,7. Your coplayer chooses A. You may choose B or C; the higher roll wins. Which is better?",
+    "options": [
+      "Both beat A with probability 1/2",
+      "Neither can beat A more often than it loses",
+      "C, which beats A with probability 5/9",
+      "B, which beats A with probability 5/9"
+    ],
+    "answer": 2,
+    "hint": "Repeated faces mean you can count nine equally likely pairs of distinct face values.",
+    "explanation": "Against A's values 2,4,9, C's 3 wins once, 5 wins twice and 7 wins twice: 5 wins out of 9. B wins against A only 4 times out of 9. In fact A beats B, B beats C, and C beats A, each with probability 5/9. Pairwise win probability need not produce a transitive ranking.",
+    "source": {
+      "title": "MIT 18.05: Problem Set 1 Solutions (counting, dice and birthdays)",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_pset01_sol_pdf/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob28",
+    "category": "probability",
+    "level": 1,
+    "title": "One reroll, no regrets",
+    "prompt": "You roll a fair six-sided die for that many points. After seeing it, you may keep the result or reroll once, in which case you MUST accept the second result. Which rule maximizes expected points?",
+    "options": [
+      "Always keep the first roll",
+      "Reroll 1, 2 or 3; keep 4, 5 or 6",
+      "Reroll everything except 6",
+      "Reroll only 1 or 2"
+    ],
+    "answer": 1,
+    "hint": "Compare the observed score with the expected score of one fresh roll.",
+    "explanation": "A fresh roll is worth 3.5 points on average. Reroll any observed value below 3.5 and keep any value above it. The resulting expectation is (3 times 3.5 + 4 + 5 + 6)/6 = 4.25. The aim is maximum average points, not the largest possible best-case score.",
+    "source": {
+      "title": "MIT 18.05: Expected Value of Discrete Random Variables",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class04-prep-b.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob29",
+    "category": "probability",
+    "level": 2,
+    "title": "Three candidates, no recall",
+    "prompt": "Three candidates of distinct quality arrive in uniformly random order. You can compare each with earlier candidates, but cannot recall a rejected candidate. You reject the first, take the second if better than the first, and otherwise take the third. What is the chance you select the best overall?",
+    "options": ["1/2", "1/3", "2/3", "1/6"],
+    "answer": 0,
+    "hint": "List the six possible orders of worst, middle and best.",
+    "explanation": "The rule succeeds for orders worst-best-middle, middle-best-worst and middle-worst-best. It fails for the other three orders. Thus it selects the best in 3 of 6 cases, or 1/2. Rejecting one candidate supplies a benchmark, at the cost of sometimes rejecting the best.",
+    "source": {
+      "title": "MIT 18.05: Counting and Sets",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class01-prep-b_pdf/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob30",
+    "category": "probability",
+    "level": 2,
+    "title": "The nearly guaranteed one-point profit",
+    "prompt": "In a fair coin game, winning earns your stake and losing costs it. You bet 1 point, then 2 after a loss, then 4 after another loss. You stop after any win or after three losses. What is your expected NET change in points?",
+    "options": ["+1", "+7/8", "-1/8", "0"],
+    "answer": 3,
+    "hint": "Most sessions win one point. How much does the all-loss session cost?",
+    "explanation": "With probability 7/8, at least one bet wins and the net profit is exactly 1. With probability 1/8, all three lose and the net loss is 1+2+4=7. Expected change is (7/8)(1) + (1/8)(-7) = 0. A high chance of a small profit can hide a rare compensating loss.",
+    "source": {
+      "title": "MIT 18.05: Expected Value of Discrete Random Variables",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class04-prep-b.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob31",
+    "category": "probability",
+    "level": 2,
+    "title": "The positive average that shrinks your pile",
+    "prompt": "Each independent fair coin toss multiplies your points by 1.5 for H or by 0.6 for T. The mean multiplier on one toss is 1.05. After 200 tosses with exactly 100 heads and 100 tails, how do your points compare with the start?",
+    "options": [
+      "They return exactly to the starting value",
+      "The final value depends on the order of the tosses",
+      "They are multiplied by 0.9^100, far below the start",
+      "They are multiplied by 1.05^200, far above the start"
+    ],
+    "answer": 2,
+    "hint": "With the counts fixed, multiply the factors. Addition is not the operation used by the game.",
+    "explanation": "The final multiplier is 1.5^100 times 0.6^100 = (1.5 times 0.6)^100 = 0.9^100. The order does not matter. The unconditional expected multiplier after 200 tosses is indeed 1.05^200, but rare very favorable sequences can raise that expectation while this balanced sequence loses almost everything.",
+    "source": {
+      "title": "MIT 18.05: Joint Distributions and Independence",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class07-prep-a.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob32",
+    "category": "probability",
+    "level": 1,
+    "title": "The two jars exchange colors",
+    "prompt": "Jar A starts with 20 red beads and jar B with 20 blue beads. Move 10 beads from A to B, mix B, then return 10 uniformly sampled beads from B to A. At the end, compare the number of blue beads in A with the number of red beads in B.",
+    "options": [
+      "They have the same mean but usually different counts",
+      "They are equal in every outcome",
+      "Blue beads in A are more numerous on average",
+      "Red beads in B are more numerous on average"
+    ],
+    "answer": 1,
+    "hint": "Both jars finish with 20 beads. Count how many red beads are missing from A.",
+    "explanation": "If A ends with k blue beads, it has 20-k red beads. The other k of the original 20 red beads must be in B. Thus the two wrong-color counts are exactly equal, not just equal in expectation. Random mixing affects their common value, but cannot break this conservation identity.",
+    "source": {
+      "title": "MIT 18.05: Counting and Sets",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class01-prep-b_pdf/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob33",
+    "category": "probability",
+    "level": 3,
+    "title": "Arrange the jars before chance chooses",
+    "prompt": "You must put 10 red and 10 blue beads into two nonempty jars, using every bead. A fair coin selects a jar, then one bead is drawn uniformly from it. Which arrangement maximizes the probability of drawing red?",
+    "options": [
+      "One red alone; all remaining beads in the other jar",
+      "Five red and five blue in each jar",
+      "All red in one jar and all blue in the other",
+      "One blue alone; all remaining beads in the other jar"
+    ],
+    "answer": 0,
+    "hint": "The jar-selection coin gives even a one-bead jar half of the probability mass.",
+    "explanation": "A single red guarantees success on half the trials. The other jar contributes (1/2)(9/19), giving 14/19 overall. To see optimality, label the smaller jar as having n<=10 beads and r reds. The success probability is [r/n + (10-r)/(20-n)]/2. For n<10 it increases with r, so fill that jar with reds. The resulting probability decreases as n grows; n=1 is best. At n=10 it is only 1/2.",
+    "source": {
+      "title": "MIT 18.05: Conditional Probability, Independence and Bayes' Theorem",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class03-prep.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob34",
+    "category": "probability",
+    "level": 2,
+    "title": "Who gets the first heads?",
+    "prompt": "You and your coplayer alternate independent tosses of a fair coin, with you going first. Whoever tosses the first H wins. What is your probability of winning?",
+    "options": ["1/2", "3/4", "5/8", "2/3"],
+    "answer": 3,
+    "hint": "Either you win immediately, or two tails return the game to its starting situation.",
+    "explanation": "Let p be your win probability. You win immediately with probability 1/2. If both players toss T, probability 1/4, the situation resets. So p=1/2+p/4, giving p=2/3. Equivalently, sum 1/2 + 1/8 + 1/32 + ... . Alternating fairly does not remove the first-move advantage.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 6, Geometric Waiting Times and Total Expectation",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/9866bcafa1403ea4163ec3c6b31a53c0_MIT6_041SCF13_L06.pdf"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob35",
+    "category": "probability",
+    "level": 2,
+    "title": "The family-size survey",
+    "prompt": "A village has 50 families with one child and 50 families with three children. A researcher chooses one child uniformly from all children and asks how many children are in that child's family, including them. What is the expected answer?",
+    "options": ["1.5", "3", "2.5", "2"],
+    "answer": 2,
+    "hint": "The researcher samples children, not families. How many children come from each family size?",
+    "explanation": "There are 50 children from one-child families and 150 from three-child families. The expected answer is (50/200)(1) + (150/200)(3) = 2.5. Sampling a family uniformly would instead give 2. Large families are more likely to be encountered through a randomly selected child.",
+    "source": {
+      "title": "MIT 6.041SC: Sampling People on Buses (Jimmy Li)",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/resources/sampling-people-on-buses-1/"
+    },
+    "type": "Puzzle"
+  },
+  {
+    "id": "prob36",
+    "category": "probability",
+    "level": 3,
+    "title": "Add random numbers until you cross one",
+    "prompt": "Draw independent uniform numbers from [0,1], adding them as you go. Stop the first time the sum exceeds 1. What is the expected number of draws, including the final one?",
+    "options": ["4", "e, approximately 2.718", "2", "3"],
+    "answer": 1,
+    "hint": "For n draws, the probability that their sum is still at most 1 is the volume of a simplex: 1/n!.",
+    "explanation": "Let N be the number of draws. The tail-sum identity gives E[N]=sum over n>=0 of P(N>n). After n draws, the sum is at most 1 in a region of the unit n-cube with volume 1/n!. Thus E[N]=1+1+1/2!+1/3!+...=e. The n=0 term is 1 because at least one draw is always needed.",
+    "source": {
+      "title": "MIT 6.041SC: Lecture 9, Multiple Continuous Random Variables",
+      "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/0e64d4c45353c6ed659a2f5969407843_MIT6_041SCF13_L09.pdf"
+    },
+    "type": "Puzzle"
   }
 ]

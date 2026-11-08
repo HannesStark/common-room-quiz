@@ -1,6 +1,8 @@
 # Common Room
 
-A free, noncommercial quiz for shared-screen play, friendly rivalry, or solo exploration. The bank contains 180 original questions across mathematics, biology, informatics, machine learning, and philosophy of law. Each has four choices, a hint, an explanation, and an MIT OpenCourseWare source link.
+A free, noncommercial quiz for shared-screen play, friendly rivalry, or solo exploration. The bank contains 216 original questions: 36 each in mathematics, biology, informatics, machine learning, philosophy of law, and probability puzzles. Each has four choices, a hint, an explanation, and an MIT OpenCourseWare source link.
+
+Probability puzzles is a separate category with conditional-probability traps, waiting times, random walks, geometric probability, and decisions under uncertainty. Select it alone for a puzzle night, or combine it with any other subject.
 
 ## Play
 

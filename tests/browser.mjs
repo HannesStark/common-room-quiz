@@ -37,7 +37,9 @@ async function noOverflow() {
 try {
   await page.goto(base);
   await page.locator("#start-button").waitFor();
-  assert.match(await page.textContent(".hero-facts"), /180/);
+  assert.ok(
+    (await page.textContent(".hero-facts")).includes(String(bank.length)),
+  );
   await page.screenshot({ path: output + "/home.png", fullPage: true });
   await page
     .locator("label.mode-option")
@@ -128,7 +130,10 @@ try {
   assert.equal((await getState()).session.step, "end");
   await click("home");
   await page.locator("#library-link").click();
-  assert.equal(await page.locator("#modal .library>details").count(), 180);
+  assert.equal(
+    await page.locator("#modal .library>details").count(),
+    bank.length,
+  );
   assert.equal(await page.locator("#modal .library-answer[open]").count(), 0);
   await page.locator('[data-filter="law"]').click();
   assert.equal(await page.locator("#modal .library>details").count(), 36);
@@ -178,8 +183,8 @@ try {
   await page.locator("#length").selectOption("all");
   await page.locator("#difficulty").selectOption("all");
   await click("start");
-  assert.equal((await getState()).session.deck.length, 180);
-  for (let i = 0; i < 180; i++) {
+  assert.equal((await getState()).session.deck.length, bank.length);
+  for (let i = 0; i < bank.length; i++) {
     assert.equal(await page.locator(".answer-options button").count(), 4);
     await noOverflow();
     await page.evaluate(() =>
@@ -188,7 +193,7 @@ try {
     await page.evaluate(() =>
       document.querySelector('[data-action="next"]').click(),
     );
-    if ((i + 1) % 10 === 0 && i < 179) {
+    if ((i + 1) % 10 === 0 && i < bank.length - 1) {
       assert.equal((await getState()).session.step, "break");
       await page.evaluate(() =>
         document.querySelector('[data-action="ready"]').click(),
@@ -196,10 +201,81 @@ try {
     }
   }
   assert.equal((await getState()).session.step, "end");
-  assert.equal((await getState()).session.history.length, 180);
+  assert.equal((await getState()).session.history.length, bank.length);
   await click("home");
   await page.locator("#pool").selectOption("unseen");
   assert.equal(await page.locator("#start-button").isDisabled(), true);
+  // A pre-update save keeps its history and active game. The new category is selectable.
+  const legacy = await getState();
+  legacy.config.categories = ["math", "bio", "cs", "ml", "law"];
+  legacy.config.pool = "all";
+  legacy.config.levels = [1, 2, 3];
+  legacy.session = structuredClone(final);
+  legacy.session.history = final.history
+    .filter((h) => h.category !== "probability")
+    .slice(0, 1);
+  legacy.session.deck = final.deck.filter(
+    (d) => byId[d.id].category !== "probability",
+  );
+  legacy.session.index = legacy.session.history.length;
+  legacy.session.step = "question";
+  legacy.session.answers = [null, null];
+  legacy.session.turn = legacy.session.index % 2;
+  legacy.session.selected = null;
+  legacy.session.hint = false;
+  legacy.session.confident = false;
+  await page.evaluate(
+    (saved) => localStorage.setItem("common-room-v1", JSON.stringify(saved)),
+    legacy,
+  );
+  await page.reload();
+  await page.locator("#start-button").waitFor();
+  assert.equal(await page.locator(".subject-option").count(), 6);
+  assert.equal(
+    await page
+      .locator('input[name="category"][value="probability"]')
+      .isChecked(),
+    false,
+  );
+  assert.deepEqual((await getState()).progress, legacy.progress);
+  await click("resume");
+  assert.equal((await getState()).session.step, "question");
+  assert.equal(
+    (await getState()).session.deck.length,
+    legacy.session.deck.length,
+  );
+  await click("home");
+  for (const input of await page.locator('input[name="category"]').all()) {
+    const want = (await input.getAttribute("value")) === "probability";
+    if ((await input.isChecked()) !== want) await input.locator("..").click();
+  }
+  await page.locator("#length").selectOption("all");
+  await page.locator("#difficulty").selectOption("all");
+  await page.locator("#pool").selectOption("all");
+  assert.match(await page.textContent("#available-count"), /36 available/);
+  await click("start");
+  await click("new-confirm");
+  const probabilitySession = (await getState()).session;
+  assert.equal(probabilitySession.deck.length, 36);
+  assert.ok(
+    probabilitySession.deck.every(
+      (item) => byId[item.id].category === "probability",
+    ),
+  );
+  await page.reload();
+  await click("resume");
+  assert.deepEqual((await getState()).session.deck, probabilitySession.deck);
+  await page.screenshot({
+    path: output + "/probability-question.png",
+    fullPage: true,
+  });
+  await noOverflow();
+  await click("home");
+  await page.locator("#library-link").click();
+  await page.locator('[data-filter="probability"]').click();
+  assert.equal(await page.locator("#modal .library>details").count(), 36);
+  assert.equal(await page.locator("#modal .library-answer[open]").count(), 0);
+  await page.keyboard.press("Escape");
   assert.deepEqual(errors, []);
   console.log(
     JSON.stringify({
@@ -219,9 +295,11 @@ try {
         "source credits",
         "320px and 390px layouts",
         "corrupt-save recovery",
-        "complete 180-question solo tour",
+        `complete ${bank.length}-question solo tour`,
         "all round interludes",
         "exhausted unseen pool",
+        "legacy save and active game preserved",
+        "probability-only selection, resume and library",
       ],
       scores: expected,
     }),

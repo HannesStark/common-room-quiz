@@ -3,7 +3,7 @@ export const CATEGORIES = {
     name: "Math",
     number: "01",
     color: "#dfe8fb",
-    description: "Probability, patterns & beautiful traps",
+    description: "Algebra, statistics & beautiful patterns",
   },
   bio: {
     name: "Biology",
@@ -28,6 +28,12 @@ export const CATEGORIES = {
     number: "05",
     color: "#f5e8b9",
     description: "Rules, rights & difficult distinctions",
+  },
+  probability: {
+    name: "Probability puzzles",
+    number: "06",
+    color: "#d6eee9",
+    description: "Chance, surprises & delightful traps",
   },
 };
 export const LEVELS = { 1: "Curious", 2: "Think it through", 3: "Stretch" };

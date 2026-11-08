@@ -19,29 +19,29 @@ const config = {
   pool: "all",
   length: "all",
 };
-test("all 180 questions have complete, unique, valid content", () => {
+test("all 216 questions have complete, unique, valid content", () => {
   validateBank(bank);
-  assert.equal(bank.length, 180);
-  assert.equal(new Set(bank.map((q) => q.prompt)).size, 180);
+  assert.equal(bank.length, 216);
+  assert.equal(new Set(bank.map((q) => q.prompt)).size, 216);
   for (const cat of config.categories)
     assert.equal(bank.filter((q) => q.category === cat).length, 36);
 });
 test("full tour includes every question once and permutes all choices", () => {
   const deck = createDeck(bank, config);
-  assert.equal(deck.length, 180);
-  assert.equal(new Set(deck.map((q) => q.id)).size, 180);
+  assert.equal(deck.length, 216);
+  assert.equal(new Set(deck.map((q) => q.id)).size, 216);
   for (const q of deck) assert.deepEqual([...q.order].sort(), [0, 1, 2, 3]);
 });
-test("balanced rounds visit all five subjects before any repeats", () => {
+test("balanced rounds visit all selected subjects before any repeats", () => {
   const deck = createDeck(bank, config);
-  for (let i = 0; i < deck.length; i += 5)
+  for (let i = 0; i < deck.length; i += config.categories.length)
     assert.equal(
       new Set(
         deck
-          .slice(i, i + 5)
+          .slice(i, i + config.categories.length)
           .map((d) => bank.find((q) => q.id === d.id).category),
       ).size,
-      5,
+      config.categories.length,
     );
 });
 test("category and difficulty filters are applied before selection", () => {
@@ -54,6 +54,15 @@ test("category and difficulty filters are applied before selection", () => {
     assert.equal(q.level, 2);
   }
 });
+test("probability puzzles can be selected as a standalone category", () => {
+  const deck = createDeck(bank, { ...config, categories: ["probability"] });
+  assert.equal(deck.length, 36);
+  assert.ok(
+    deck.every(
+      (item) => bank.find((q) => q.id === item.id).category === "probability",
+    ),
+  );
+});
 test("a bookmark alone does not mark a question as explored", () => {
   const progress = {
     [bank[0].id]: { saved: true },
@@ -62,7 +71,7 @@ test("a bookmark alone does not mark a question as explored", () => {
   const qs = eligibleQuestions(bank, { ...config, pool: "unseen" }, progress);
   assert.ok(qs.some((q) => q.id === bank[0].id));
   assert.ok(!qs.some((q) => q.id === bank[1].id));
-  assert.equal(qs.length, 179);
+  assert.equal(qs.length, bank.length - 1);
 });
 test("missed and bookmarked pools are independent", () => {
   const p = {
